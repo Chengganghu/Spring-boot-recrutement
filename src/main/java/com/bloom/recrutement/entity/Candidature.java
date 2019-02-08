@@ -1,10 +1,8 @@
 package com.bloom.recrutement.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -21,7 +19,12 @@ public class Candidature {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date birthday;
     private Status status;
-    private String motdepass;
+    private String motdepasse;
+    private String cvname;
+    private String lettrename;
+
+
+
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "post_id")
     private Post post;
@@ -82,10 +85,31 @@ public class Candidature {
     }
 
     public String getMotdePass() {
-        return motdepass;
+        return motdepasse;
     }
 
-    public void setMotdepass(String motdepass) {
-        this.motdepass = motdepass;
+    public void setMotdepasse(String motdepasse) {
+        this.motdepasse = motdepasse;
     }
+
+    public String getMotdepasse() {
+        return motdepasse;
+    }
+
+    public String getCvname() {
+        return cvname;
+    }
+
+    public void setCvname(String cvname) {
+        this.cvname = cvname;
+    }
+
+    public String getLettrename() {
+        return lettrename;
+    }
+
+    public void setLettrename(String lettrename) {
+        this.lettrename = lettrename;
+    }
+
 }

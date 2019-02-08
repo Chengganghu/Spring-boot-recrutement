@@ -2,34 +2,49 @@ package com.bloom.recrutement.controller;
 
 
 import com.bloom.recrutement.service.FileSystemStorageService;
-import com.bloom.recrutement.service.StorageService;
+import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.stereotype.Component;
 
-import java.io.*;
-import java.util.Random;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.MediaType;
+import java.io.InputStream;
 
-@RestController
+
+@Component
+@Path("uploads")
 public class FileUpload {
     @Autowired
     FileSystemStorageService fileSystemStorageService;
 
     Logger logger = LoggerFactory.getLogger(FileUpload.class);
-    @CrossOrigin(origins = {"http://localhost:8088"})
-    @PostMapping(value = "/uploads/cv",consumes = "multipart/form-data")
-    public void HandleCVUpload(@RequestParam("cv") MultipartFile cv){
-        fileSystemStorageService.store(cv,"cvs");
+
+
+
+//    @CrossOrigin(origins = {"http://localhost:8088"})
+//    @PostMapping(value = "/uploads/lettre",consumes = "multipart/form-data")
+//    public void HandlelettreUpload(@RequestParam("lettre") MultipartFile lettre){
+//        fileSystemStorageService.store(lettre,"lettres");
+//    }
+    @GET
+    @Path("/test")
+    public String test(){
+        return "this is a rest test";
     }
 
-    @CrossOrigin(origins = {"http://localhost:8088"})
-    @PostMapping(value = "/uploads/lettre",consumes = "multipart/form-data")
-    public void HandlelettreUpload(@RequestParam("lettre") MultipartFile lettre){
-        fileSystemStorageService.store(lettre,"lettres");
+    @POST
+    @Path("/cv")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    public void HandleCVUpload(
+            @FormDataParam("cv") InputStream uploadedInputStream,
+            @FormDataParam("cv") FormDataContentDisposition fileDetail
+    ){
+        fileSystemStorageService.store(uploadedInputStream,"cvs",fileDetail);
     }
 }

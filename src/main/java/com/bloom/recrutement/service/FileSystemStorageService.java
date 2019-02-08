@@ -1,6 +1,7 @@
 package com.bloom.recrutement.service;
 
 import com.bloom.recrutement.exceptions.StorageException;
+import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -23,20 +24,17 @@ public class FileSystemStorageService implements StorageService {
     }
 
     @Override
-    public void store(MultipartFile file,String type) {
+    public void store(InputStream inputStream, String type, FormDataContentDisposition fileDetails) {
 
-        String filename = StringUtils.cleanPath(file.getOriginalFilename());
+        String filename = StringUtils.cleanPath(fileDetails.getFileName());
         try {
-            if (file.isEmpty()) {
-                throw new StorageException("Failed to store empty file " + filename);
-            }
             if (filename.contains("..")) {
                 // This is a security check
                 throw new StorageException(
                         "Cannot store file with relative path outside current directory "
                                 + filename);
             }
-            try (InputStream inputStream = file.getInputStream()) {
+            try {
                 String filePath = "src/main/resources/upload/"+type+'/' + filename;
                 Path path = Paths.get(filePath);
                 if(Files.exists(path)){
@@ -44,9 +42,11 @@ public class FileSystemStorageService implements StorageService {
                     Files.copy(inputStream,Paths.get(filePath+"_"+random.nextInt(100)) ,StandardCopyOption.REPLACE_EXISTING);
                 }else
                     Files.copy(inputStream,path,StandardCopyOption.REPLACE_EXISTING);
+            }catch(Exception e){
+
             }
         }
-        catch (IOException e) {
+        catch (Exception e) {
             throw new StorageException("Failed to store file " + filename, e);
         }
     }
