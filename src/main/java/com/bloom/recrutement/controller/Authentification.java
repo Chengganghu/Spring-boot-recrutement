@@ -50,9 +50,7 @@ public class Authentification {
                 if(c.getMotdePass().equals(motdepasse)){
                     Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
                     String token = Jwts.builder().setSubject(email).signWith(key).compact();
-                    return Response.ok(token).header("Access-Control-Allow-Origin", "*")
-                            .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
-                            .build();
+                    return Response.ok(token).build();
                 }
             }
         }

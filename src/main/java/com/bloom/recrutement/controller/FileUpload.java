@@ -25,13 +25,6 @@ public class FileUpload {
 
     Logger logger = LoggerFactory.getLogger(FileUpload.class);
 
-
-
-//    @CrossOrigin(origins = {"http://localhost:8088"})
-//    @PostMapping(value = "/uploads/lettre",consumes = "multipart/form-data")
-//    public void HandlelettreUpload(@RequestParam("lettre") MultipartFile lettre){
-//        fileSystemStorageService.store(lettre,"lettres");
-//    }
     @GET
     @Path("/test")
     public String test(){
@@ -46,5 +39,15 @@ public class FileUpload {
             @FormDataParam("cv") FormDataContentDisposition fileDetail
     ){
         fileSystemStorageService.store(uploadedInputStream,"cvs",fileDetail);
+    }
+
+    @POST
+    @Path("/lettre")
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    public void HandleLettreUpload(
+            @FormDataParam("lettre") InputStream uploadedInputStream,
+            @FormDataParam("lettre") FormDataContentDisposition fileDetail
+    ){
+        fileSystemStorageService.store(uploadedInputStream,"lettres",fileDetail);
     }
 }
