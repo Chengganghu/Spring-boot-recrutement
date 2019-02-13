@@ -35,18 +35,17 @@ public class FileSystemStorageService implements StorageService {
                                 + filename);
             }
             try {
-                String filePath = "src/main/resources/upload/"+type+'/' + filename;
+                String filePath = "src/main/resources/upload/" + type + '/' + filename;
                 Path path = Paths.get(filePath);
-                if(Files.exists(path)){
+                if (Files.exists(path)) {
                     Random random = new Random();
-                    Files.copy(inputStream,Paths.get(filePath+"_"+random.nextInt(100)) ,StandardCopyOption.REPLACE_EXISTING);
-                }else
-                    Files.copy(inputStream,path,StandardCopyOption.REPLACE_EXISTING);
-            }catch(Exception e){
+                    Files.copy(inputStream, Paths.get(filePath + "_" + random.nextInt(100)), StandardCopyOption.REPLACE_EXISTING);
+                } else
+                    Files.copy(inputStream, path, StandardCopyOption.REPLACE_EXISTING);
+            } catch (Exception e) {
 
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new StorageException("Failed to store file " + filename, e);
         }
     }

@@ -1,9 +1,9 @@
 package com.bloom.recrutement.config;
 
-import com.bloom.recrutement.security.JwtAuthenticationEntryPoint;
-import com.bloom.recrutement.security.JwtAuthenticationProvider;
-import com.bloom.recrutement.security.JwtAuthenticationTokenFilter;
-import com.bloom.recrutement.security.JwtSuccessHandler;
+import com.bloom.recrutement.authentication.security.JwtAuthenticationEntryPoint;
+import com.bloom.recrutement.authentication.security.JwtAuthenticationProvider;
+import com.bloom.recrutement.authentication.security.JwtAuthenticationTokenFilter;
+import com.bloom.recrutement.authentication.security.JwtSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,12 +28,12 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtAuthenticationEntryPoint entryPoint;
 
     @Bean
-    public AuthenticationManager authenticationManager(){
+    public AuthenticationManager authenticationManager() {
         return new ProviderManager(Collections.singletonList(authenticationProvider));
     }
 
     @Bean
-    public JwtAuthenticationTokenFilter  authencationTokenFilter(){
+    public JwtAuthenticationTokenFilter authencationTokenFilter() {
         JwtAuthenticationTokenFilter filter = new JwtAuthenticationTokenFilter();
         filter.setAuthenticationManager(authenticationManager());
         filter.setAuthenticationSuccessHandler(new JwtSuccessHandler());
@@ -42,9 +42,9 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().antMatchers("/rest/**").authenticated()
-        .and().exceptionHandling().authenticationEntryPoint(entryPoint)
-        .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.csrf().disable().authorizeRequests().antMatchers("/*/rest/**").authenticated()
+                .and().exceptionHandling().authenticationEntryPoint(entryPoint)
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.addFilterBefore(authencationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 

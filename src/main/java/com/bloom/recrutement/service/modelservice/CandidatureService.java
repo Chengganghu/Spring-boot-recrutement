@@ -12,11 +12,11 @@ public class CandidatureService {
     @Autowired
     CandidatureRepository candidatureRepository;
 
-    public List<Candidature> getAll(){
+    public List<Candidature> getAll() {
         return candidatureRepository.findAll();
     }
 
-    public void addCandidature(Candidature candidature){
+    public void addCandidature(Candidature candidature) {
         candidatureRepository.save(candidature);
     }
 }

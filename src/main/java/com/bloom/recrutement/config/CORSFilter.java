@@ -1,15 +1,11 @@
-package com.bloom.recrutement.controller.modelcontroller;
-
-import org.springframework.context.annotation.Configuration;
-
-import javax.ws.rs.container.ContainerRequestContext;
-import javax.ws.rs.container.ContainerRequestFilter;
-import javax.ws.rs.container.ContainerResponseContext;
-import javax.ws.rs.container.ContainerResponseFilter;
+package com.bloom.recrutement.config;
+import javax.ws.rs.container.*;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.ext.Provider;
 import java.io.IOException;
-
-public class CORSFilter implements ContainerRequestFilter,ContainerResponseFilter {
+@Provider
+@PreMatching
+public class CORSFilter implements ContainerRequestFilter, ContainerResponseFilter {
     /**
      * Method for ContainerRequestFilter.
      */
@@ -59,7 +55,7 @@ public class CORSFilter implements ContainerRequestFilter,ContainerResponseFilte
                     // you want the client to be able to send to the server,
                     // put it in this list. And remove the ones you don't want.
                     "X-Requested-With, Authorization, " +
-                            "Accept-Version, Content-MD5, CSRF-Token, Content-Type, "+
+                            "Accept-Version, Content-MD5, CSRF-Token, Content-Type, " +
                             "origin, accept");
         }
 

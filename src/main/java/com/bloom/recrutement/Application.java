@@ -1,4 +1,5 @@
 package com.bloom.recrutement;
+
 import org.glassfish.jersey.jaxb.internal.XmlJaxbElementProvider;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

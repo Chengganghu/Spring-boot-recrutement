@@ -13,7 +13,7 @@ public class PostDescription {
     private String departement;
     private String details;
 
-    public int getId(){
+    public int getId() {
         return this.id;
     }
 
@@ -41,7 +41,7 @@ public class PostDescription {
         this.details = details;
     }
 
-    public PostDescription(){
+    public PostDescription() {
 
     }
 }

@@ -12,7 +12,7 @@ public class Post {
 
     private String name;
     private String description;
-    @OneToMany(mappedBy = "post",orphanRemoval = true, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "post", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Candidature> candidatureList;
 
     public int getId() {

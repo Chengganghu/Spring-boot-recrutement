@@ -1,4 +1,4 @@
-package com.bloom.recrutement.security;
+package com.bloom.recrutement.authentication.security;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;

@@ -24,8 +24,7 @@ public class Candidature {
     private String lettrename;
 
 
-
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "post_id")
     private Post post;
 
@@ -82,10 +81,6 @@ public class Candidature {
 
     public void setStatus(Status status) {
         this.status = status;
-    }
-
-    public String getMotdePass() {
-        return motdepasse;
     }
 
     public void setMotdepasse(String motdepasse) {

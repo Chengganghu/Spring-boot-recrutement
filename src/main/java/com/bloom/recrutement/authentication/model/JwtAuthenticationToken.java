@@ -1,14 +1,14 @@
-package com.bloom.recrutement.model;
+package com.bloom.recrutement.authentication.model;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 public class JwtAuthenticationToken extends UsernamePasswordAuthenticationToken {
 
 
-
     private String token;
+
     public JwtAuthenticationToken(String token) {
-        super(null,null);
+        super(null, null);
         this.token = token;
     }
 

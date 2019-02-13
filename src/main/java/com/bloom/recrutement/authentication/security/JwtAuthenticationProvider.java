@@ -1,13 +1,11 @@
-package com.bloom.recrutement.security;
+package com.bloom.recrutement.authentication.security;
 
-import com.bloom.recrutement.model.JwtAuthenticationToken;
-import com.bloom.recrutement.model.JwtUser;
-import com.bloom.recrutement.model.JwtUserDetails;
+import com.bloom.recrutement.authentication.model.JwtAuthenticationToken;
+import com.bloom.recrutement.authentication.model.JwtUser;
+import com.bloom.recrutement.authentication.model.JwtUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -31,12 +29,12 @@ public class JwtAuthenticationProvider extends AbstractUserDetailsAuthentication
         JwtAuthenticationToken jwtAuthenticationToken = (JwtAuthenticationToken) usernamePasswordAuthenticationToken;
         String token = jwtAuthenticationToken.getToken();
         JwtUser jwtUser = validator.validate(token);
-        if(jwtUser == null){
+        if (jwtUser == null) {
             throw new RuntimeException("JWT is not correct");
         }
 
         List<GrantedAuthority> grantedAuthorityList = AuthorityUtils.commaSeparatedStringToAuthorityList(jwtUser.getRole());
-        return new JwtUserDetails(jwtUser.getUserName(),jwtUser.getId(),token,grantedAuthorityList);
+        return new JwtUserDetails(jwtUser.getUserName(),  token, grantedAuthorityList);
     }
 
     @Override

@@ -10,33 +10,23 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Component
-@Path("rest")
+@Path("")
 public class CandidatureController {
     @Autowired
     CandidatureService candidatureService;
 
-//    @GetMapping("/candidatures")
-//    public List<Candidature> getAll(){
-//        return candidatureService.getAll();
-//    }
-//
-//    @CrossOrigin(origins = {"http://localhost:8088"})
-//    @PostMapping(value = "candidatures",produces = "application/json",consumes = "application/json")
-//    public void addCandidature(@RequestBody Candidature candidature){
-//        candidatureService.addCandidature(candidature);
-//    }
-
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("candidatures")
-    public List<Candidature> getAll(){
+    @Path("rest/candidatures")
+    public List<Candidature> getAll() {
         return candidatureService.getAll();
     }
 
+
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("candidatures")
-    public void addCandidature(Candidature candidature){
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void addCandidature(Candidature candidature) {
         candidatureService.addCandidature(candidature);
     }
 }

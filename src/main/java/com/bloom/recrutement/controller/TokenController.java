@@ -1,7 +1,7 @@
 package com.bloom.recrutement.controller;
 
-import com.bloom.recrutement.model.JwtUser;
-import com.bloom.recrutement.security.JwtGenerator;
+import com.bloom.recrutement.authentication.model.JwtUser;
+import com.bloom.recrutement.authentication.security.JwtGenerator;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.Consumes;
@@ -19,9 +19,12 @@ public class TokenController {
     }
 
     @POST
+    @Path("/jwt")
     @Consumes(MediaType.APPLICATION_JSON)
-    public String generate(JwtUser jwtUser){
+    public String generate(JwtUser jwtUser) {
 
         return jwtGenerator.generate(jwtUser);
     }
+
+
 }

@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface CandidatureRepository extends CrudRepository<Candidature,Integer> {
+public interface CandidatureRepository extends CrudRepository<Candidature, Integer> {
     @Override
     public List<Candidature> findAll();
 }
