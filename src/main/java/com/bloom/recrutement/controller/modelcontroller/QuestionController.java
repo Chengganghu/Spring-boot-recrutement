@@ -11,19 +11,19 @@ import java.util.List;
 
 
 @Component
-@Path("")
+@Path("question")
 public class QuestionController {
     @Autowired
     QuestionService questionService;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("questions")
+    @Path("rest/all")
     public List<Question> getAll(){return questionService.getAll();}
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("questions")
+    @Path("restful")
     public void add(Question question){
         questionService.add(question);
     }
