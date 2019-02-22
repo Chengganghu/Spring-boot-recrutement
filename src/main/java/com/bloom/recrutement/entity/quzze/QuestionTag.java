@@ -1,5 +1,11 @@
 package com.bloom.recrutement.entity.quzze;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import net.minidev.json.annotate.JsonIgnore;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,8 +17,10 @@ public class QuestionTag {
     private int id;
 
     private String name;
-    @ManyToMany(mappedBy = "list")
-    private List<Question> list;
+
+    @ManyToMany(mappedBy = "taglist",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JsonIgnoreProperties("taglist")
+    private List<Question> questionlist;
 
     public QuestionTag() {
     }
@@ -33,11 +41,11 @@ public class QuestionTag {
         this.name = name;
     }
 
-    public List<Question> getList() {
-        return list;
+    public List<Question> getQuestionlist() {
+        return questionlist;
     }
 
-    public void setList(List<Question> list) {
-        this.list = list;
+    public void setQuestionlist(List<Question> questionlist) {
+        this.questionlist = questionlist;
     }
 }

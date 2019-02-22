@@ -12,7 +12,10 @@ public class Choix {
     private boolean rightAns;
     private String Description;
 
+
+
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "answer_id")
     private ChoixAnswer choixAnswer;
     public Choix(){}
 
@@ -38,5 +41,13 @@ public class Choix {
 
     public void setDescription(String description) {
         Description = description;
+    }
+
+    public ChoixAnswer getChoixAnswer() {
+        return choixAnswer;
+    }
+
+    public void setChoixAnswer(ChoixAnswer choixAnswer) {
+        this.choixAnswer = choixAnswer;
     }
 }
