@@ -33,8 +33,13 @@ public class Question {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JsonIgnoreProperties("question")
-    @JoinColumn(name = "answer_id")
-    private Answer answer;
+    @JoinColumn(name = "ouverte_answer_id")
+    private OuverteAnswer ouverteAnswer;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("question")
+    @JoinColumn(name = "choix_answer_id")
+    private ChoixAnswer choixAnswer;
 
     public int getId() {
         return id;
@@ -68,12 +73,20 @@ public class Question {
         this.description = description;
     }
 
-    public Answer getAnswer() {
-        return answer;
+    public OuverteAnswer getOuverteAnswer() {
+        return ouverteAnswer;
     }
 
-    public void setAnswer(Answer answer) {
-        this.answer = answer;
+    public void setOuverteAnswer(OuverteAnswer ouverteAnswer) {
+        this.ouverteAnswer = ouverteAnswer;
+    }
+
+    public ChoixAnswer getChoixAnswer() {
+        return choixAnswer;
+    }
+
+    public void setChoixAnswer(ChoixAnswer choixAnswer) {
+        this.choixAnswer = choixAnswer;
     }
 
     public Question() {

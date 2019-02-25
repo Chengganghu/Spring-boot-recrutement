@@ -4,19 +4,15 @@ import javax.persistence.*;
 
 @Entity
 public class Choix {
+    /****************************************************************/
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "choix_id")
     private int id;
 
     private boolean rightAns;
-    private String Description;
+    private String description;
 
-
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "answer_id")
-    private ChoixAnswer choixAnswer;
     public Choix(){}
 
     public int getId() {
@@ -36,18 +32,11 @@ public class Choix {
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
-    public ChoixAnswer getChoixAnswer() {
-        return choixAnswer;
-    }
-
-    public void setChoixAnswer(ChoixAnswer choixAnswer) {
-        this.choixAnswer = choixAnswer;
-    }
 }

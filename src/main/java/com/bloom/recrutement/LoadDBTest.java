@@ -28,15 +28,33 @@ public class LoadDBTest implements CommandLineRunner {
         OuverteAnswer ouverteAnswer = new OuverteAnswer();
         ouverteAnswer.setAnswerDes("answer description");
 
+        ChoixAnswer choixAnswer = new ChoixAnswer();
+        Choix choix1 = new Choix();
+        choix1.setDescription("this is choix1 worldline fait");
+        choix1.setRightAns(true);
+        Choix choix2 = new Choix();
+        choix2.setDescription("this is choix2 chengganghu fait");
+        choix2.setRightAns(false);
+
+
+        choixAnswer.getChoixList().add(choix1);
+        choixAnswer.getChoixList().add(choix2);
 
         Question question = new Question();
         question.setDescription("this is a test");
         question.setQuestionType(MULTIPLE);
         question.setTaglist(tags);
-        question.setAnswer(ouverteAnswer);
+        question.setOuverteAnswer(ouverteAnswer);
+
+        Question question1 = new Question();
+        question1.setQuestionType(MULTIPLE);
+        question1.setDescription("this is a choix question");
+        //question1.setTaglist(tags);
+        question1.setChoixAnswer(choixAnswer);
+
 
         questionService.add(question);
-
+        questionService.add(question1);
 
 
 

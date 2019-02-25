@@ -3,8 +3,8 @@ import javax.ws.rs.container.*;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
 import java.io.IOException;
-@Provider
-@PreMatching
+//@Provider
+//@PreMatching
 public class CORSFilter implements ContainerRequestFilter, ContainerResponseFilter {
     /**
      * Method for ContainerRequestFilter.
@@ -54,7 +54,7 @@ public class CORSFilter implements ContainerRequestFilter, ContainerResponseFilt
                     // Whatever other non-standard/safe headers (see list above)
                     // you want the client to be able to send to the server,
                     // put it in this list. And remove the ones you don't want.
-                    "X-Requested-With, Authorization, " +
+                    "X-Requested-With, Authorization, chengganghu, " +
                             "Accept-Version, Content-MD5, CSRF-Token, Content-Type, " +
                             "origin, accept");
         }
@@ -63,6 +63,6 @@ public class CORSFilter implements ContainerRequestFilter, ContainerResponseFilt
         // or preflight request. We need to add this header
         // to both type of requests. Only preflight requests
         // need the previously added headers.
-        response.getHeaders().add("Access-Control-Allow-Origin", "*");
+        response.getHeaders().add("Access-Control-Allow-Origin", "http://localhost:8088");
     }
 }

@@ -3,9 +3,12 @@ package com.bloom.recrutement.entity.quzze;
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-public class OuverteAnswer extends Answer{
+public class OuverteAnswer {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ouverte_answer_id")
+    private int id;
 
     private String answerDes;
 
