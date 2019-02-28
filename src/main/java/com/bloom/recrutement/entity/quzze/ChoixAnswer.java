@@ -1,8 +1,8 @@
 package com.bloom.recrutement.entity.quzze;
 
 import javax.persistence.*;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class ChoixAnswer  {
@@ -11,8 +11,8 @@ public class ChoixAnswer  {
     @Column(name = "choix_answer_id")
     private int id;
 
-    @OneToMany( cascade = CascadeType.ALL)
-    private List<Choix> choixList = new LinkedList<>();
+    @OneToMany( cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private Set<Choix> choixList = new HashSet<>();
 
     public ChoixAnswer(){}
 
@@ -24,11 +24,11 @@ public class ChoixAnswer  {
         this.id = id;
     }
 
-    public List<Choix> getChoixList() {
+    public Set<Choix> getChoixList() {
         return choixList;
     }
 
-    public void setChoixList(List<Choix> choixList) {
+    public void setChoixList(Set<Choix> choixList) {
         this.choixList = choixList;
     }
 }

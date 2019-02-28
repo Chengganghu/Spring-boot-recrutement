@@ -11,7 +11,7 @@ import java.util.List;
 
 import static com.bloom.recrutement.entity.quzze.QuestionType.MULTIPLE;
 
-@Component
+//@Component
 public class LoadDBTest implements CommandLineRunner {
     @Autowired
     QuestionService questionService;

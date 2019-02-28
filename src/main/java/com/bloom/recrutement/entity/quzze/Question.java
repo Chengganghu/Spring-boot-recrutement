@@ -32,12 +32,10 @@ public class Question {
     private String description;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("question")
     @JoinColumn(name = "ouverte_answer_id")
     private OuverteAnswer ouverteAnswer;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("question")
     @JoinColumn(name = "choix_answer_id")
     private ChoixAnswer choixAnswer;
 

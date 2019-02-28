@@ -17,7 +17,7 @@ public class CandidatureController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("rest/candidatures")
+    @Path("candidatures")
     public List<Candidature> getAll() {
         return candidatureService.getAll();
     }

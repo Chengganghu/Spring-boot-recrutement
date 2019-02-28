@@ -18,7 +18,7 @@ public class QuestionController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("rest/questions")
+    @Path("questions")
     public List<Question> getAll(){return questionService.getAll();}
 
     @POST
