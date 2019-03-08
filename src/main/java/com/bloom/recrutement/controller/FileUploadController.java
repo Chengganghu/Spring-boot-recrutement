@@ -19,11 +19,11 @@ import java.io.InputStream;
 
 @Component
 @Path("uploads")
-public class FileUpload {
+public class FileUploadController {
     @Autowired
     FileSystemStorageService fileSystemStorageService;
 
-    Logger logger = LoggerFactory.getLogger(FileUpload.class);
+    Logger logger = LoggerFactory.getLogger(FileUploadController.class);
 
     @GET
     @Path("/test")

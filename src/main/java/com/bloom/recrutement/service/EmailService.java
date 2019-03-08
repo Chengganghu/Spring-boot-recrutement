@@ -2,16 +2,19 @@ package com.bloom.recrutement.service;
 
 
 
+import org.springframework.stereotype.Service;
+
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
-
-public class ServiceEmail {
-    public static final String Username = "bloom-recrute";
-    public static final String Password = "Worldline";
+@Service
+public class EmailService {
+    public static final String USERNAME = "bloom-recrute";
+    public static final String PASSWORD = "Worldline";
+    public static final String SENDER = "no-reply@aots.net";
 
     public void config() throws MessagingException {
         Properties prop = new Properties();
@@ -22,11 +25,11 @@ public class ServiceEmail {
         Session session = Session.getInstance(prop, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(Username,Password);
+                return new PasswordAuthentication(USERNAME, PASSWORD);
             }
         });
         Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress("worldline-hu@gmail.com"));
+        message.setFrom(new InternetAddress(SENDER));
         message.setRecipients(Message.RecipientType.TO,InternetAddress.parse("chengganghu@outlook.com"));
         message.setSubject("Test mail spring boot");
 

@@ -11,7 +11,7 @@ import java.util.List;
 
 @Component
 @Path("authen")
-public class Authentication {
+public class AuthenticationController {
     @Autowired
     CandidatureService candidatureService;
 

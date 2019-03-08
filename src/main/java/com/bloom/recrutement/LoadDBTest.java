@@ -1,6 +1,7 @@
 package com.bloom.recrutement;
 
 import com.bloom.recrutement.entity.quzze.*;
+import com.bloom.recrutement.service.EmailService;
 import com.bloom.recrutement.service.modelservice.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -15,6 +16,8 @@ import static com.bloom.recrutement.entity.quzze.QuestionType.MULTIPLE;
 public class LoadDBTest implements CommandLineRunner {
     @Autowired
     QuestionService questionService;
+    @Autowired
+    EmailService emailService;
     @Override
     public void run(String... args) throws Exception {
         QuestionTag questionTag1 = new QuestionTag();
@@ -56,9 +59,7 @@ public class LoadDBTest implements CommandLineRunner {
         questionService.add(question);
         questionService.add(question1);
 
-
-
-
+        emailService.config();
 
     }
 }
